@@ -1,0 +1,3 @@
+[submodule "receitas-api"]
+	path = receitas-api
+	url = https://github.com/cicinth/receitas-api.git
