@@ -1,3 +1,6 @@
 [submodule "receitas-api"]
 	path = receitas-api
 	url = https://github.com/cicinth/receitas-api.git
+[submodule "receitas-webapp"]
+	path = receitas-webapp
+	url = https://github.com/cicinth/receitas-webapp.git
