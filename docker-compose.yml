@@ -1,0 +1,56 @@
+version: '3'
+services:
+  db_receitas:
+    container_name: receitas_db
+    image: mariadb:10
+    networks:
+      - db_receitas_network
+    volumes:
+      - db_receitas:/var/lib/mysql
+    env_file:
+      - db.env
+  api:
+    container_name: receitas_api
+    image: node:8-alpine
+    networks: 
+      - base_network
+      - db_receitas_network
+    ports: 
+      - "3000:80"
+    command: sh -c "npm install && npm run local"
+    # command: sh -c "yarn && ./node_modules/.bin/pm2-runtime start pm2-dev.config.js"
+    working_dir: /app
+    volumes:
+      - ./receitas-api:/app
+    env_file:
+      - api.env
+  client:
+    image: node:10
+    networks:
+      - base_network
+    ports:
+      - "80:3000"
+    command: sh -c "npm install && npm run dev"
+    working_dir: /app
+    volumes:
+      - ./receitas-webapp:/app
+    environment:
+      NODE_ENV: "local"
+      NUXT_HOST: 0.0.0.0
+      API_URL: http://0.0.0.0:8080
+  pma:
+    container_name: receitas_pma
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8181:80"
+    networks:
+      - db_receitas_network
+    depends_on:
+      - db_receitas
+    environment:
+      PMA_HOST: db_receitas
+networks:
+  base_network:
+  db_receitas_network:
+volumes:
+  db_receitas:
