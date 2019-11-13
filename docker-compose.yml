@@ -37,7 +37,7 @@ services:
     environment:
       NODE_ENV: "local"
       NUXT_HOST: 0.0.0.0
-      API_URL: http://0.0.0.0:8080
+      API_URL: http://0.0.0.0:3000
   pma:
     container_name: receitas_pma
     image: phpmyadmin/phpmyadmin
