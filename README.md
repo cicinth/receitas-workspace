@@ -11,6 +11,7 @@ Workspace do teste técnico dasa
     `git clone --recursive https://github.com/cicinth/receitas-workspace.git`
 
 2. Executando
+    
     Adiciona as envs no repositorio receitas-workspace, mesmo local onde se encontra o docker-compose
     
     Execute
