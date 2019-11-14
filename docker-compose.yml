@@ -34,10 +34,9 @@ services:
     working_dir: /app
     volumes:
       - ./receitas-webapp:/app
-    environment:
-      NODE_ENV: "local"
-      NUXT_HOST: 0.0.0.0
-      API_URL: http://0.0.0.0:3000
+    env_file:
+      - app.env
+ 
   pma:
     container_name: receitas_pma
     image: phpmyadmin/phpmyadmin
